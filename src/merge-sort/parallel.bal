@@ -1,24 +1,21 @@
 
-function parallelMergesort(int[] array) returns int[] {
+function parallelMergesort(int[] array) {
     int[] helper = [];
-    return doSeqMergesort(array, helper, 0, array.length() - 1);
+    doParallelMergesort(array, helper, 0, array.length() - 1);
 }
 
-function doParallelSeqMergesort(int[] array, int[] helper, int low, int high) returns int[] {
+function doParallelMergesort(int[] array, int[] helper, int low, int high) {
     if (low < high) {
         int middle = (low + high) / 2;
         fork {
             worker w1 {
-                _ = doSeqMergesort(array, helper, low, middle);
+                doParallelMergesort(array, helper, low, middle);
             }
             worker w2 {
-                _ = doSeqMergesort(array, helper, middle + 1, high);
+                doParallelMergesort(array, helper, middle + 1, high);
             }
         }
-        _ = wait{w1,w2};
-        _ = merge(array, helper, low, middle, high);
-        return array;
-    } else {
-        return array;
+        _ = wait {w1,w2};
+        merge(array, helper, low, middle, high);
     }
 }

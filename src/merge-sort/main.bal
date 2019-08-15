@@ -13,7 +13,7 @@ function testSeqMergesort(int size) {
     }
 
     int startTime = time:currentTime().time;
-    int[] mergesortResult = seqMergesort(sample);
+    seqMergesort(sample);
     int diff = time:currentTime().time - startTime;
     io:println("Finished in " + diff.toString() + " milliseconds");
 }
@@ -25,7 +25,7 @@ function testParallelMergesort(int size) {
     }
 
     int startTime = time:currentTime().time;
-    int[] mergesortResult = parallelMergesort(sample);
+    parallelMergesort(sample);
     int diff = time:currentTime().time - startTime;
     io:println("Finished in " + diff.toString() + " milliseconds");
 }

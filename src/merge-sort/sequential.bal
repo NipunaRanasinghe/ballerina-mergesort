@@ -1,17 +1,14 @@
 
-function seqMergesort(int[] array) returns int[] {
+function seqMergesort(int[] array){
     int[] helper = [];
-    return doSeqMergesort(array, helper, 0, array.length() - 1);
+    doSeqMergesort(array, helper, 0, array.length() - 1);
 }
 
-function doSeqMergesort(int[] array, int[] helper, int low, int high) returns int[] {
+function doSeqMergesort(int[] array, int[] helper, int low, int high){
     if (low < high) {
         int middle = (low + high) / 2;
-        _ = doSeqMergesort(array, helper, low, middle);
-        _ = doSeqMergesort(array, helper, middle + 1, high);
+        doSeqMergesort(array, helper, low, middle);
+        doSeqMergesort(array, helper, middle + 1, high);
         _ = merge(array, helper, low, middle, high);
-        return array;
-    } else {
-        return array;
-    }
+    } 
 }
